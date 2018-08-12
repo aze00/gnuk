@@ -1,3 +1,4 @@
 [submodule "chopstx"]
 	path = chopstx
-	url = ../../chopstx/chopstx.git
+	url = https://github.com/aze00/chopstx.git
+	branch = efm32
