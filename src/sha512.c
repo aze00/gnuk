@@ -106,33 +106,29 @@ static const uint64_t k512[80] = {
 void
 sha512_process (sha512_context *ctx)
 {
-  uint32_t i;
+  uint32_t i, j;
   uint64_t *p = ctx->wbuf;
   uint64_t v[8];
 
   memcpy (v, ctx->state, 8 * sizeof (uint64_t));
 
-  v_cycle0 ( 0); v_cycle0 ( 1); v_cycle0 ( 2); v_cycle0 ( 3);
-  v_cycle0 ( 4); v_cycle0 ( 5); v_cycle0 ( 6); v_cycle0 ( 7);
-  v_cycle0 ( 8); v_cycle0 ( 9); v_cycle0 (10); v_cycle0 (11);
-  v_cycle0 (12); v_cycle0 (13); v_cycle0 (14); v_cycle0 (15);
+  for (j = 0; j < 16; j++)
+    {
+      v_cycle0 ( j);
+    }
 
   for (i = 16; i < 80; i += 16)
     {
-      v_cycle ( 0, i); v_cycle ( 1, i); v_cycle ( 2, i); v_cycle ( 3, i);
-      v_cycle ( 4, i); v_cycle ( 5, i); v_cycle ( 6, i); v_cycle ( 7, i);
-      v_cycle ( 8, i); v_cycle ( 9, i); v_cycle (10, i); v_cycle (11, i);
-      v_cycle (12, i); v_cycle (13, i); v_cycle (14, i); v_cycle (15, i);
+      for (j = 0; j < 16; j++)
+        {
+          v_cycle ( j, i);
+        }
     }
 
-  ctx->state[0] += v[0];
-  ctx->state[1] += v[1];
-  ctx->state[2] += v[2];
-  ctx->state[3] += v[3];
-  ctx->state[4] += v[4];
-  ctx->state[5] += v[5];
-  ctx->state[6] += v[6];
-  ctx->state[7] += v[7];
+  for (j = 0; j < 8; j++)
+    {
+      ctx->state[j] += v[j];
+    }
 }
 
 void
