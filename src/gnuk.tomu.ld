@@ -1,10 +1,10 @@
 /*
- * ST32F103 memory setup.
+ * efm32hg memory setup.
  */
 MEMORY
 {
-    flash  : org = 0x08000000, len = 64k
-    ram : org = 0x20000000, len = 8k
+    flash  : org = 0x00000000, len = 64k
+    ram    : org = 0x20000000, len = 8k
 }
 
 __ram_start__           = ORIGIN(ram);
