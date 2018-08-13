@@ -29,6 +29,7 @@
 
 #include "config.h"
 
+#include "board.h"
 #include "sys.h"
 #include "adc.h"
 #include "gnuk.h"
@@ -40,7 +41,8 @@
 #include <stdlib.h>
 #define main emulated_main
 #else
-#include "mcu/stm32f103.h"
+//#include "mcu/stm32f103.h"
+#include "mcu/efm32.h"
 #endif
 
 /*

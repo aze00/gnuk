@@ -26,16 +26,16 @@
 #include <stdint.h>
 #include <string.h>
 #include <chopstx.h>
-
+#include "board.h"
 #include "sys.h"
 #include "neug.h"
-#ifndef GNU_LINUX_EMULATION
+#if !defined(GNU_LINUX_EMULATION) && !defined(MCU_EFM32)
 #include "mcu/stm32f103.h"
 #endif
 #include "adc.h"
 #include "sha256.h"
 
-#ifdef GNU_LINUX_EMULATION
+#if defined(GNU_LINUX_EMULATION) || defined(MCU_EFM32)
 static const uint32_t crc32_rv_table[256] = {
   0x00000000, 0x04c11db7, 0x09823b6e, 0x0d4326d9, 0x130476dc, 0x17c56b6b,
   0x1a864db2, 0x1e475005, 0x2608edb8, 0x22c9f00f, 0x2f8ad6d6, 0x2b4bcb61,

@@ -29,6 +29,7 @@
 
 #include "config.h"
 
+#include "board.h"
 #include "gnuk.h"
 #include "sys.h"
 #include "status-code.h"

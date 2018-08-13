@@ -35,6 +35,7 @@
 
 #include "config.h"
 
+#include "board.h"
 #include "sys.h"
 #include "gnuk.h"
 

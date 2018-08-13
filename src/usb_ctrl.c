@@ -35,6 +35,7 @@
 #include "debug.h"
 #endif
 
+#include "board.h"
 #include "usb_lld.h"
 #include "usb_conf.h"
 #include "gnuk.h"
@@ -123,9 +124,14 @@ gnuk_setup_endpoints_for_interface (struct usb_dev *dev,
 	  usb_lld_setup_endp (dev, ENDP1, 1, 1);
 	  usb_lld_setup_endp (dev, ENDP2, 0, 1);
 #else
+#if  CHIP==efm32
+    usb_lld_setup_endp (dev, ENDP1, EP_BULK, 1, 1, GNUK_MAX_PACKET_SIZE);
+    usb_lld_setup_endp (dev, ENDP2, EP_INTERRUPT, 1, 1, 0);
+#else
 	  usb_lld_setup_endpoint (ENDP1, EP_BULK, 0, ENDP1_RXADDR,
 				  ENDP1_TXADDR, GNUK_MAX_PACKET_SIZE);
 	  usb_lld_setup_endpoint (ENDP2, EP_INTERRUPT, 0, 0, ENDP2_TXADDR, 0);
+#endif
 #endif
 	}
       else
@@ -208,8 +214,12 @@ usb_device_reset (struct usb_dev *dev)
 #ifdef GNU_LINUX_EMULATION
   usb_lld_setup_endp (dev, ENDP0, 1, 1);
 #else
+#if  CHIP==efm32
+    usb_lld_setup_endp (dev, ENDP0, EP_CONTROL, 1, 1, 64);
+#else
   usb_lld_setup_endpoint (ENDP0, EP_CONTROL, 0, ENDP0_RXADDR, ENDP0_TXADDR,
 			  64);
+#endif
 #endif
 
   bDeviceState = USB_DEVICE_STATE_DEFAULT;
