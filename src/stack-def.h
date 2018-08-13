@@ -10,8 +10,10 @@
 #define SIZE_3 0x4640 /* openpgp-card */
 #elif MEMORY_SIZE >= 24
 #define SIZE_3 0x2640 /* openpgp-card */
-#else
+#elif MEMORY_SIZE >= 16
 #define SIZE_3 0x1640 /* openpgp-card */
+#else
+#define SIZE_3 0x800 /* openpgp-card */
 #endif
 #define SIZE_4 0x0000 /* ---          */
 #define SIZE_5 0x0200 /* msc          */
