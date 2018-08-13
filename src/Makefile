@@ -5,7 +5,7 @@ PROJECT = gnuk
 
 CHOPSTX = ../chopstx
 
-CSRC = main.c call-rsa.c \
+CSRC = main.c  \
 	usb_desc.c usb_ctrl.c \
 	usb-ccid.c openpgp.c ac.c openpgp-do.c flash.c \
 	bn.c mod.c \
@@ -19,7 +19,7 @@ INCDIR =
 CRYPTDIR = ../polarssl
 CRYPTSRCDIR = $(CRYPTDIR)/library
 CRYPTINCDIR = $(CRYPTDIR)/include
-CRYPTSRC = $(CRYPTSRCDIR)/bignum.c $(CRYPTSRCDIR)/rsa.c $(CRYPTSRCDIR)/aes.c
+CRYPTSRC = $(CRYPTSRCDIR)/aes.c
 
 CSRC += $(CRYPTSRC)
 INCDIR += $(CRYPTINCDIR)
